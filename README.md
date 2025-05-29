@@ -62,3 +62,6 @@ Queries Pinecone using user messages and responds with relevant information.
 4. Run the workflow manually or integrate the chat trigger.
 
 
+![Screenshot 2025-05-29 184437](https://github.com/user-attachments/assets/5d93ea70-2a67-4726-9e47-594749ee35c4)
+
+After following above processing you can click open chat and test workflow 
