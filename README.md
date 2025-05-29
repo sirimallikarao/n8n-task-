@@ -1,47 +1,68 @@
-RAG Knowledge Base with Google Drive Integration
-An intelligent document Q&A system built with n8n that automatically processes documents from Google Drive and enables conversational queries using OpenAI and Pinecone vector search.
-Features
+# AI-Powered Document QA with Google Drive, OpenAI, and Pinecone (n8n Workflow)
 
-Document Ingestion: Automatically downloads and processes documents from Google Drive
-Vector Storage: Uses Pinecone for efficient semantic search and retrieval
-Smart Text Processing: Implements recursive character text splitting with configurable chunk sizes (3000 chars, 200 overlap)
-AI-Powered Chat: OpenAI GPT-4o-mini integration for natural language responses
-RAG Architecture: Retrieval-Augmented Generation for accurate, context-aware answers
-Real-time Chat: Webhook-based chat interface for instant responses
+This n8n workflow automates the ingestion of a PDF from Google Drive, converts it into vector embeddings using OpenAI, stores them in Pinecone, and enables document-based question-answering via a chatbot interface.
 
-Workflow Components
+---
 
-Document Processing Pipeline:
+## Features
 
-Manual trigger for workflow testing
-Google Drive file download
-Document loading and text splitting
-Vector embedding generation (OpenAI)
-Storage in Pinecone vector database
+- Downloads files from Google Drive
+- Extracts and splits text content into chunks
+- Generates embeddings using OpenAI
+- Stores embeddings in a Pinecone index
+- Enables real-time chatbot Q&A on uploaded content
 
+---
 
-Query Processing:
+## Workflow Breakdown
 
-Chat trigger for user interactions
-Vector similarity search in knowledge base
-AI agent with access to specialized knowledge tool
-Contextual response generation
+### 1. Manual Trigger
+Starts the workflow manually for testing or development.
 
+### 2. Set Google Drive File URL
+Uses a static `Set` node to assign the file URL.
 
+### 3. Download File
+Downloads the file from Google Drive using the OAuth2 credentials.
 
-Use Cases
+### 4. Data Processing
+- Loads the binary file
+- Splits content using Recursive Character Text Splitter
+- Converts chunks into embeddings via OpenAI
 
-Technical documentation Q&A systems
-Knowledge base chatbots
-Document analysis and insights
-Customer support automation
-Internal company knowledge sharing
+### 5. Store in Pinecone
+- Embeddings are inserted into the `n8nfilesdemo` index
+- Previous data is cleared to prevent duplication
 
-Prerequisites
+### 6. Chat Trigger
+Listens for incoming chat messages (from a UI or API).
 
-n8n instance
-Google Drive API credentials
-OpenAI API key
-Pinecone account and API key
+### 7. OpenAI Chat Model
+Handles natural language interactions using the GPT-4o-mini model.
 
-Perfect for organizations looking to build intelligent document search and Q&A systems with minimal setup complexity.
+### 8. Retrieval Agent
+Queries Pinecone using user messages and responds with relevant information.
+
+---
+
+## Requirements
+
+- n8n (self-hosted or cloud)
+- Pinecone account and API key
+- OpenAI API key
+- Google Drive API credentials
+
+---
+
+## Setup Instructions
+
+1. Clone this repository and open the workflow in n8n.
+2. Set your credentials for Google Drive, OpenAI, and Pinecone.
+3. Update the file URL in the `Set` node.
+4. Run the workflow manually or integrate the chat trigger.
+
+---
+
+## License
+
+This project is open-source under the MIT License.
