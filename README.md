@@ -61,8 +61,4 @@ Queries Pinecone using user messages and responds with relevant information.
 3. Update the file URL in the `Set` node.
 4. Run the workflow manually or integrate the chat trigger.
 
----
 
-## License
-
-This project is open-source under the MIT License.
